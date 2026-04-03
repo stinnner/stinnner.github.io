@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>个人主页</title>
+  <style>
+    :root {
+      --panel: rgba(255, 255, 255, 0.42);
+      --text: #2f241d;
+      --muted: #675448;
+      --line: rgba(47, 36, 29, 0.1);
+      --accent: #b56a3d;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      position: relative;
+      overflow-x: hidden;
+      font-family: "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+      color: var(--text);
+      background: #f6f1e8;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background: url("个人照片.jpg") center center / cover no-repeat;
+      transform: scale(1.06);
+      filter: blur(7px) brightness(1.06) saturate(0.92);
+      z-index: -2;
+    }
+
+    body::after {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background:
+        radial-gradient(circle at top left, rgba(255, 248, 238, 0.52), transparent 32%),
+        linear-gradient(180deg, rgba(248, 242, 233, 0.48) 0%, rgba(246, 241, 232, 0.56) 100%);
+      z-index: -1;
+    }
+
+    .page {
+      width: min(920px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: 56px 0;
+    }
+
+    .card {
+      overflow: visible;
+    }
+
+    .hero {
+      padding: 56px 40px 42px;
+    }
+
+    .topbar {
+      display: flex;
+      justify-content: flex-end;
+      padding: 0 40px;
+    }
+
+    .lang-toggle {
+      margin-top: 28px;
+      padding: 10px 16px;
+      border: 1px solid rgba(47, 36, 29, 0.14);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.34);
+      backdrop-filter: blur(4px);
+      color: var(--text);
+      font: inherit;
+      cursor: pointer;
+    }
+
+    .tag {
+      display: inline-block;
+      padding: 8px 14px;
+      border-radius: 999px;
+      background: rgba(181, 106, 61, 0.12);
+      color: var(--accent);
+      font-size: 14px;
+      letter-spacing: 0.08em;
+    }
+
+    h1 {
+      margin: 20px 0 14px;
+      font-size: clamp(34px, 6vw, 62px);
+      line-height: 1.06;
+    }
+
+    .lead {
+      margin: 0;
+      max-width: 640px;
+      font-size: 18px;
+      line-height: 1.8;
+      color: var(--muted);
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 20px;
+      padding: 0 40px 44px;
+    }
+
+    .panel {
+      padding: 24px;
+      border-radius: 22px;
+      background: var(--panel);
+      border: 1px solid rgba(47, 36, 29, 0.08);
+      backdrop-filter: blur(4px);
+    }
+
+    h2 {
+      margin: 0 0 14px;
+      font-size: 20px;
+    }
+
+    p,
+    li {
+      font-size: 15px;
+      line-height: 1.8;
+      color: var(--muted);
+    }
+
+    ul {
+      margin: 0;
+      padding-left: 18px;
+    }
+
+    .footer-end {
+      padding: 10px 40px 40px;
+    }
+
+    .footer-box {
+      padding: 24px 28px;
+      border-radius: 22px;
+      background: rgba(47, 36, 29, 0.08);
+      border: 1px solid rgba(47, 36, 29, 0.06);
+    }
+
+    .footer-box p {
+      margin: 0;
+    }
+
+    a {
+      color: inherit;
+    }
+
+    @media (max-width: 720px) {
+      .page {
+        width: min(100% - 20px, 920px);
+        padding: 20px 0;
+      }
+
+      .topbar {
+        padding: 0 20px;
+      }
+
+      .hero {
+        padding: 36px 20px 28px;
+      }
+
+      .grid {
+        grid-template-columns: 1fr;
+        padding: 0 20px 28px;
+      }
+
+      .footer-end {
+        padding: 0 20px 28px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <section class="card">
+      <div class="topbar">
+        <button class="lang-toggle" id="langToggle" type="button">EN</button>
+      </div>
+
+      <div class="hero">
+        <span class="tag" data-zh="PERSONAL HOMEPAGE" data-en="PERSONAL HOMEPAGE">PERSONAL HOMEPAGE</span>
+        <h1 data-zh="你好，我是JTZ<br>一位正在认真成长的人。" data-en="Hello, I'm JTZ<br>A person growing with intention.">你好，我是JTZ<br>一位正在认真成长的人。</h1>
+      </div>
+
+      <div class="grid">
+        <article class="panel">
+          <h2 data-zh="关于我" data-en="About Me">关于我</h2>
+          <p data-zh="我热爱学习新事物，平时关注技术、设计和有创造力的内容。 我希望通过持续积累，让自己做事更稳、更好、更有价值。" data-en="I enjoy learning new things and spend a lot of time exploring technology, design, and creative work. I hope to keep building myself steadily and turn that growth into something meaningful.">
+            我热爱学习新事物，平时关注技术、设计和有创造力的内容。
+            我希望通过持续积累，让自己做事更稳、更好、更有价值。
+          </p>
+        </article>
+
+        <article class="panel">
+          <h2 data-zh="我在做什么" data-en="What I'm Doing">我在做什么</h2>
+          <ul>
+            <li data-zh="数据科学与大数据技术" data-en="Data science and big data technology">数据科学与大数据技术</li>
+            <li data-zh="机器学习" data-en="Machine learning">机器学习</li>
+            <li data-zh="保持长期进步" data-en="Staying consistent and improving over time">保持长期进步</li>
+          </ul>
+        </article>
+
+        <article class="panel">
+          <h2 data-zh="兴趣方向" data-en="Interests">兴趣方向</h2>
+          <ul>
+            <li data-zh="日常效率与工具探索" data-en="Productivity and tool exploration">日常效率与工具探索</li>
+            <li data-zh="摄影、生活记录与审美表达" data-en="Photography, life records, and visual expression">摄影、生活记录与审美表达</li>
+          </ul>
+        </article>
+
+        <article class="panel">
+          <h2 data-zh="联系我" data-en="Contact">联系我</h2>
+          <p data-zh="邮箱：jintianze220@gmail.com" data-en="Email: jintianze220@gmail.com">
+            邮箱：jintianze220@gmail.com
+          </p>
+        </article>
+      </div>
+
+    </section>
+  </main>
+  <script>
+    const toggleButton = document.getElementById("langToggle");
+    const switchables = document.querySelectorAll("[data-zh][data-en]");
+    let currentLang = "zh";
+
+    function applyLanguage(lang) {
+      document.documentElement.lang = lang === "zh" ? "zh-CN" : "en";
+      switchables.forEach((node) => {
+        node.innerHTML = node.dataset[lang];
+      });
+      toggleButton.textContent = lang === "zh" ? "EN" : "中";
+    }
+
+    toggleButton.addEventListener("click", () => {
+      currentLang = currentLang === "zh" ? "en" : "zh";
+      applyLanguage(currentLang);
+    });
+  </script>
+</body>
+</html>
