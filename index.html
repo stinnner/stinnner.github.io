@@ -176,6 +176,27 @@
       height: 28px;
     }
 
+    .visit-total {
+      position: fixed;
+      right: 22px;
+      bottom: 22px;
+      padding: 12px 18px;
+      border: 1px solid rgba(45, 37, 30, 0.14);
+      border-radius: 999px;
+      background: rgba(255, 252, 247, 0.82);
+      color: #5f554d;
+      font-family: "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+      font-size: 14px;
+      box-shadow: 0 14px 34px rgba(38, 31, 25, 0.14);
+      backdrop-filter: blur(10px);
+      z-index: 20;
+    }
+
+    .visit-total span {
+      color: #2c241f;
+      font-weight: 600;
+    }
+
     @media (max-width: 640px) {
       .layout {
         grid-template-columns: 1fr;
@@ -209,6 +230,13 @@
 
       .practice-layout {
         grid-template-columns: 1fr;
+      }
+
+      .visit-total {
+        right: 14px;
+        bottom: 14px;
+        padding: 10px 14px;
+        font-size: 13px;
       }
     }
   </style>
@@ -265,5 +293,11 @@
       </div>
     </section>
   </main>
+
+  <div class="visit-total">
+    访问总量：<span id="busuanzi_value_site_pv"></span>
+  </div>
+
+  <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 </body>
 </html>
