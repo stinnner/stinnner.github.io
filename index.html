@@ -197,6 +197,194 @@
       font-weight: 600;
     }
 
+
+
+    .murmur-slide-control {
+      position: fixed;
+      right: 26px;
+      top: 50%;
+      z-index: 35;
+      width: 204px;
+      height: 54px;
+      padding: 5px;
+      border: 1px solid rgba(45, 37, 30, 0.14);
+      border-radius: 999px;
+      background: rgba(255, 252, 247, 0.82);
+      box-shadow: 0 18px 44px rgba(38, 31, 25, 0.14);
+      backdrop-filter: blur(12px);
+      transform: translateY(-50%);
+      user-select: none;
+      touch-action: none;
+    }
+
+    .murmur-track {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      border-radius: inherit;
+      color: rgba(44, 36, 31, 0.66);
+      font-family: "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+      font-size: 14px;
+      letter-spacing: 0;
+    }
+
+    .murmur-thumb {
+      position: absolute;
+      left: 4px;
+      top: 4px;
+      width: 36px;
+      height: 36px;
+      border: 0;
+      border-radius: 50%;
+      background: #2c241f;
+      color: #fffaf4;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      cursor: grab;
+      transition: transform 180ms ease, background 180ms ease;
+    }
+
+    .murmur-thumb:active {
+      cursor: grabbing;
+      background: #4e4037;
+    }
+
+    .murmur-panel {
+      position: fixed;
+      inset: 0;
+      z-index: 30;
+      overflow-y: auto;
+      background: #fff;
+      color: #2c241f;
+      transform: translateX(100%);
+      transition: transform 620ms cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    body.murmur-open {
+      overflow: hidden;
+    }
+
+    body.murmur-open .murmur-panel {
+      transform: translateX(0);
+    }
+
+    body.murmur-open .murmur-slide-control,
+    body.murmur-open .visit-total {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .murmur-inner {
+      width: min(900px, calc(100% - 12vw));
+      margin: 0 auto;
+      padding: clamp(72px, 10vw, 118px) 0;
+    }
+
+    .murmur-topline {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      margin-bottom: clamp(54px, 8vw, 90px);
+      border-bottom: 1px solid rgba(44, 36, 31, 0.16);
+      padding-bottom: 28px;
+    }
+
+    .murmur-title {
+      margin: 0;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(46px, 8vw, 92px);
+      font-style: italic;
+      font-weight: 400;
+      line-height: 0.96;
+      letter-spacing: 0;
+    }
+
+    .murmur-close {
+      width: 46px;
+      height: 46px;
+      border: 1px solid rgba(44, 36, 31, 0.16);
+      border-radius: 50%;
+      background: transparent;
+      color: #2c241f;
+      cursor: pointer;
+      font-size: 26px;
+      line-height: 1;
+      transition: transform 180ms ease, border-color 180ms ease;
+    }
+
+    .murmur-close:hover,
+    .murmur-close:focus-visible {
+      transform: rotate(90deg);
+      border-color: rgba(44, 36, 31, 0.46);
+      outline: none;
+    }
+
+    .murmur-list {
+      border-top: 1px solid rgba(44, 36, 31, 0.14);
+    }
+
+    .murmur-entry {
+      display: grid;
+      grid-template-columns: minmax(120px, 180px) minmax(0, 1fr);
+      gap: clamp(24px, 5vw, 72px);
+      padding: 34px 0 38px;
+      border-bottom: 1px solid rgba(44, 36, 31, 0.14);
+    }
+
+    .murmur-date {
+      color: rgba(44, 36, 31, 0.5);
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 18px;
+      font-style: italic;
+      line-height: 1.4;
+    }
+
+    .murmur-entry h3 {
+      margin: 0 0 12px;
+      font-family: "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+      font-size: clamp(22px, 3vw, 32px);
+      font-weight: 500;
+      line-height: 1.3;
+      letter-spacing: 0;
+    }
+
+    .murmur-entry h3:last-child {
+      margin-bottom: 0;
+    }
+
+    .murmur-entry p {
+      margin: 0;
+      color: #4f4842;
+      font-family: "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+      font-size: 18px;
+      line-height: 1.95;
+      letter-spacing: 0;
+    }
+
+    .murmur-visitor {
+      position: fixed;
+      right: clamp(24px, 4vw, 54px);
+      bottom: clamp(20px, 3vw, 34px);
+      z-index: 32;
+      color: rgba(44, 36, 31, 0.54);
+      font-family: "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+      font-size: 15px;
+      letter-spacing: 0;
+      pointer-events: none;
+    }
+
+    .murmur-visitor span {
+      margin-left: 6px;
+      color: #2c241f;
+      font-weight: 500;
+    }
+
     @media (max-width: 640px) {
       .layout {
         grid-template-columns: 1fr;
@@ -236,6 +424,40 @@
         right: 14px;
         bottom: 14px;
         padding: 10px 14px;
+        font-size: 13px;
+      }
+
+
+      .murmur-slide-control {
+        top: auto;
+        right: 50%;
+        bottom: 78px;
+        width: min(204px, calc(100vw - 36px));
+        transform: translateX(50%);
+      }
+
+      .murmur-inner {
+        width: min(100% - 36px, 900px);
+        padding: 68px 0;
+      }
+
+      .murmur-topline {
+        margin-bottom: 44px;
+      }
+
+      .murmur-entry {
+        grid-template-columns: 1fr;
+        gap: 12px;
+        padding: 28px 0 32px;
+      }
+
+      .murmur-entry p {
+        font-size: 16px;
+      }
+
+      .murmur-visitor {
+        right: 18px;
+        bottom: 18px;
         font-size: 13px;
       }
     }
@@ -294,10 +516,120 @@
     </section>
   </main>
 
+
+  <button class="murmur-slide-control" type="button" aria-label="向右滑动进入碎碎念">
+    <span class="murmur-track">
+      <span class="murmur-track-text">向右滑动 · 碎碎念</span>
+      <span class="murmur-thumb" aria-hidden="true">→</span>
+    </span>
+  </button>
+
+  <aside class="murmur-panel" id="murmurPanel" aria-label="碎碎念时间线" aria-hidden="true">
+    <div class="murmur-inner">
+      <header class="murmur-topline">
+        <h2 class="murmur-title">碎碎念</h2>
+        <button class="murmur-close" type="button" aria-label="返回首页">×</button>
+      </header>
+
+      <div class="murmur-list">
+        <article class="murmur-entry">
+          <time class="murmur-date" datetime="2026-06-28">2026.06.28</time>
+          <div>
+            <h3>关于慢一点</h3>
+            <p>有时候不是没有在前进，只是速度变得更安静。把事情写下来以后，模糊的念头像被摊开，反而能看见下一步应该往哪里走。</p>
+          </div>
+        </article>
+
+        <article class="murmur-entry">
+          <time class="murmur-date" datetime="2026-06-12">2026.06.12</time>
+          <div>
+            <h3>Thinking of You</h3>
+          </div>
+        </article>
+      </div>
+    </div>
+    <div class="murmur-visitor" aria-label="碎碎念访客数">
+      访客数：<span id="busuanzi_value_site_uv"></span>
+    </div>
+  </aside>
+
   <div class="visit-total">
     访问总量：<span id="busuanzi_value_site_pv"></span>
   </div>
 
   <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  <script>
+    const murmurControl = document.querySelector(".murmur-slide-control");
+    const murmurThumb = document.querySelector(".murmur-thumb");
+    const murmurPanel = document.querySelector(".murmur-panel");
+    const murmurClose = document.querySelector(".murmur-close");
+    let murmurStartX = 0;
+    let murmurDragging = false;
+    let murmurMaxTravel = 0;
+
+    function openMurmur() {
+      document.body.classList.add("murmur-open");
+      murmurPanel.setAttribute("aria-hidden", "false");
+      murmurThumb.style.transform = "translateX(0)";
+      setTimeout(() => murmurClose.focus(), 420);
+    }
+
+    function closeMurmur() {
+      document.body.classList.remove("murmur-open");
+      murmurPanel.setAttribute("aria-hidden", "true");
+      murmurControl.focus();
+    }
+
+    function resetMurmurThumb() {
+      murmurThumb.style.transform = "translateX(0)";
+    }
+
+    murmurControl.addEventListener("pointerdown", (event) => {
+      if (document.body.classList.contains("murmur-open")) return;
+      murmurDragging = true;
+      murmurStartX = event.clientX;
+      murmurMaxTravel = murmurControl.offsetWidth - murmurThumb.offsetWidth - 14;
+      murmurControl.setPointerCapture(event.pointerId);
+    });
+
+    murmurControl.addEventListener("pointermove", (event) => {
+      if (!murmurDragging) return;
+      const travel = Math.max(0, Math.min(event.clientX - murmurStartX, murmurMaxTravel));
+      murmurThumb.style.transform = `translateX(${travel}px)`;
+    });
+
+    murmurControl.addEventListener("pointerup", (event) => {
+      if (!murmurDragging) return;
+      const travel = Math.max(0, Math.min(event.clientX - murmurStartX, murmurMaxTravel));
+      murmurDragging = false;
+      if (travel > murmurMaxTravel * 0.72) {
+        openMurmur();
+      } else {
+        resetMurmurThumb();
+      }
+    });
+
+    murmurControl.addEventListener("pointercancel", () => {
+      murmurDragging = false;
+      resetMurmurThumb();
+    });
+
+    murmurControl.addEventListener("keydown", (event) => {
+      if (event.key === "Enter" || event.key === " ") {
+        event.preventDefault();
+        openMurmur();
+      }
+    });
+
+    murmurClose.addEventListener("click", closeMurmur);
+
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape" && document.body.classList.contains("murmur-open")) {
+        closeMurmur();
+      }
+    });
+  </script>
+
 </body>
 </html>
