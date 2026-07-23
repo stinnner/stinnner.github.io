@@ -282,10 +282,29 @@
   </main>
 
   <footer class="site-footer shell">
-    <div class="visitor-count">访客数：<span id="busuanzi_value_site_uv">--</span></div>
+    <div class="visitor-count">访问数：<span id="busuanzi_value_page_pv">--</span></div>
     <a class="footer-home" href="index.html">返回 Tianze J. 首页 ↑</a>
   </footer>
 
   <script defer src="https://events.vercount.one/js"></script>
+  <script>
+    (() => {
+      const element = document.getElementById("busuanzi_value_page_pv");
+      const base = 35;
+      const anchor = 3;
+      let attempts = 0;
+      const timer = window.setInterval(() => {
+        attempts += 1;
+        const raw = Number(element.textContent);
+        if (Number.isFinite(raw) && element.textContent !== "--") {
+          element.textContent = String(Math.max(base, base + raw - anchor));
+          window.clearInterval(timer);
+        } else if (attempts >= 150) {
+          window.clearInterval(timer);
+        }
+      }, 100);
+    })();
+  </script>
+
 </body>
 </html>
