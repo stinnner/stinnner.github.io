@@ -85,6 +85,48 @@
       letter-spacing: 0;
     }
 
+
+    .project-entry {
+      width: min(560px, 100%);
+      margin-top: 34px;
+      padding: 18px 0;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto auto;
+      align-items: center;
+      gap: 18px;
+      color: #2c241f;
+      border-top: 1px solid rgba(45, 37, 30, 0.16);
+      border-bottom: 1px solid rgba(45, 37, 30, 0.16);
+      text-decoration: none;
+      transition: color 180ms ease, padding-left 180ms ease;
+    }
+
+    .project-entry:hover,
+    .project-entry:focus-visible {
+      padding-left: 10px;
+      color: #9d3f32;
+      outline: none;
+    }
+
+    .project-entry-label {
+      color: #7b7067;
+      font-family: "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+      font-size: 13px;
+      text-transform: uppercase;
+    }
+
+    .project-entry strong {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 24px;
+      font-style: italic;
+      font-weight: 400;
+    }
+
+    .project-entry-arrow {
+      font-size: 22px;
+      line-height: 1;
+    }
+
     .content {
       width: min(1120px, 100%);
       margin-top: 34px;
@@ -399,6 +441,11 @@
         width: 100%;
       }
 
+      .project-entry {
+        margin-top: 28px;
+        grid-template-columns: minmax(0, 1fr) auto auto;
+      }
+
       .name {
         font-size: clamp(48px, 17vw, 72px);
         text-align: center;
@@ -470,6 +517,11 @@
     </div>
     <section class="intro" aria-label="Name">
       <h1 class="name">Tianze J.</h1>
+      <a class="project-entry" href="projects.html" aria-label="查看项目页面">
+        <span class="project-entry-label">Selected Project</span>
+        <strong>项目</strong>
+        <span class="project-entry-arrow" aria-hidden="true">↗</span>
+      </a>
     </section>
   </div>
 
