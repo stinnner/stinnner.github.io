@@ -5,324 +5,41 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Tianze J. 的项目：动漫眼部区域识别与可视化">
   <title>项目 | Tianze J.</title>
-  <style>
-    :root {
-      color-scheme: light;
-      --paper: #f5f1eb;
-      --ink: #29231f;
-      --muted: #70675f;
-      --line: rgba(41, 35, 31, 0.16);
-      --accent: #a53f32;
-      --sage: #6d8178;
-    }
-
-    * {
-      box-sizing: border-box;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
-    body {
-      margin: 0;
-      min-height: 100vh;
-      background:
-        radial-gradient(circle at 84% 8%, rgba(154, 181, 171, 0.26), transparent 28%),
-        var(--paper);
-      color: var(--ink);
-      font-family: "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
-    }
-
-    a {
-      color: inherit;
-    }
-
-    .shell {
-      width: min(1180px, calc(100% - 12vw));
-      margin: 0 auto;
-    }
-
-    .site-header {
-      min-height: 88px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 24px;
-      border-bottom: 1px solid var(--line);
-    }
-
-    .brand {
-      font-family: Georgia, "Times New Roman", serif;
-      font-size: 22px;
-      font-style: italic;
-      text-decoration: none;
-    }
-
-    .back-link {
-      display: inline-flex;
-      align-items: center;
-      gap: 9px;
-      color: var(--muted);
-      font-size: 14px;
-      text-decoration: none;
-      transition: color 180ms ease;
-    }
-
-    .back-link:hover,
-    .back-link:focus-visible {
-      color: var(--accent);
-      outline: none;
-    }
-
-    .back-link span {
-      font-size: 20px;
-      line-height: 1;
-    }
-
-    .hero {
-      padding: clamp(68px, 10vw, 130px) 0 clamp(52px, 8vw, 92px);
-    }
-
-    .eyebrow {
-      margin: 0 0 24px;
-      color: var(--accent);
-      font-size: 13px;
-      font-weight: 600;
-      text-transform: uppercase;
-    }
-
-    h1 {
-      max-width: 1020px;
-      margin: 0;
-      font-family: Georgia, "Times New Roman", serif;
-      font-size: clamp(48px, 8vw, 104px);
-      font-style: italic;
-      font-weight: 400;
-      line-height: 1.03;
-      letter-spacing: 0;
-    }
-
-    .meta {
-      margin-top: clamp(46px, 7vw, 78px);
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      border-top: 1px solid var(--line);
-      border-bottom: 1px solid var(--line);
-    }
-
-    .meta-item {
-      min-height: 108px;
-      padding: 24px 24px 24px 0;
-    }
-
-    .meta-item + .meta-item {
-      padding-left: 24px;
-      border-left: 1px solid var(--line);
-    }
-
-    .meta-label {
-      display: block;
-      margin-bottom: 10px;
-      color: var(--muted);
-      font-size: 12px;
-      text-transform: uppercase;
-    }
-
-    .meta-value {
-      font-family: Georgia, "Times New Roman", serif;
-      font-size: 22px;
-      font-style: italic;
-    }
-
-    .cover {
-      margin: 0;
-      padding: clamp(18px, 3vw, 34px);
-      border: 1px solid var(--line);
-      background: #1e2124;
-    }
-
-    .cover img {
-      display: block;
-      width: 100%;
-      height: auto;
-    }
-
-    .cover figcaption {
-      margin-top: 16px;
-      color: rgba(255, 255, 255, 0.62);
-      font-size: 13px;
-      line-height: 1.6;
-    }
-
-    .overview {
-      padding: clamp(72px, 10vw, 128px) 0;
-      display: grid;
-      grid-template-columns: minmax(160px, 0.38fr) minmax(0, 1fr);
-      gap: clamp(42px, 9vw, 136px);
-    }
-
-    .section-number {
-      color: var(--accent);
-      font-family: Georgia, "Times New Roman", serif;
-      font-size: 18px;
-      font-style: italic;
-    }
-
-    .overview h2 {
-      margin: 0 0 28px;
-      font-family: Georgia, "Times New Roman", serif;
-      font-size: clamp(38px, 5vw, 64px);
-      font-style: italic;
-      font-weight: 400;
-      line-height: 1.08;
-    }
-
-    .overview p {
-      max-width: 760px;
-      margin: 0;
-      color: #514a44;
-      font-size: clamp(17px, 2vw, 20px);
-      line-height: 1.95;
-    }
-
-    .regions {
-      padding: 0 0 clamp(82px, 11vw, 140px);
-    }
-
-    .regions-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: end;
-      gap: 24px;
-      margin-bottom: 26px;
-    }
-
-    .regions h2 {
-      margin: 0;
-      font-family: Georgia, "Times New Roman", serif;
-      font-size: clamp(34px, 5vw, 56px);
-      font-style: italic;
-      font-weight: 400;
-    }
-
-    .region-list {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      border-top: 1px solid var(--line);
-    }
-
-    .region-item {
-      min-height: 82px;
-      display: grid;
-      grid-template-columns: 56px minmax(0, 1fr);
-      align-items: center;
-      gap: 18px;
-      border-bottom: 1px solid var(--line);
-    }
-
-    .region-item:nth-child(odd) {
-      padding-right: 28px;
-    }
-
-    .region-item:nth-child(even) {
-      padding-left: 28px;
-      border-left: 1px solid var(--line);
-    }
-
-    .region-index {
-      color: var(--sage);
-      font-family: Georgia, "Times New Roman", serif;
-      font-style: italic;
-    }
-
-    .site-footer {
-      min-height: 126px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 24px;
-      border-top: 1px solid var(--line);
-      color: var(--muted);
-      font-size: 14px;
-    }
-
-    .footer-home {
-      color: var(--ink);
-      text-decoration: none;
-    }
-
-    .footer-home:hover,
-    .footer-home:focus-visible {
-      color: var(--accent);
-      outline: none;
-    }
-
-    @media (max-width: 720px) {
-      .shell {
-        width: min(100% - 36px, 1180px);
+  <script>
+    (() => {
+      try {
+        const saved = localStorage.getItem("tj-theme");
+        document.documentElement.setAttribute(
+          "data-theme",
+          saved === "night" || saved === "day" ? saved : "day"
+        );
+      } catch (_) {
+        document.documentElement.setAttribute("data-theme", "day");
       }
-
-      .site-header {
-        min-height: 72px;
-      }
-
-      .hero {
-        padding-top: 58px;
-      }
-
-      .meta {
-        grid-template-columns: 1fr;
-      }
-
-      .meta-item {
-        min-height: 88px;
-        padding: 20px 0;
-      }
-
-      .meta-item + .meta-item {
-        padding-left: 0;
-        border-top: 1px solid var(--line);
-        border-left: 0;
-      }
-
-      .cover {
-        padding: 10px;
-      }
-
-      .overview {
-        grid-template-columns: 1fr;
-        gap: 18px;
-      }
-
-      .region-list {
-        grid-template-columns: 1fr;
-      }
-
-      .region-item:nth-child(odd),
-      .region-item:nth-child(even) {
-        padding: 0;
-        border-left: 0;
-      }
-
-      .site-footer {
-        align-items: flex-start;
-        flex-direction: column;
-        justify-content: center;
-      }
-    }
-  </style>
+    })();
+  </script>
+  <link rel="stylesheet" href="styles.css">
 </head>
-<body>
-  <header class="site-header shell">
-    <a class="brand" href="index.html">Tianze J.</a>
-    <a class="back-link" href="index.html"><span aria-hidden="true">←</span> 返回首页</a>
+<body class="page-inner">
+  <div class="progress-rail" aria-hidden="true"><span></span></div>
+
+  <header class="site-header">
+    <div class="shell-row">
+      <a class="brand" href="index.html">Tianze J.</a>
+      <div class="header-actions">
+        <button type="button" class="theme-toggle" aria-pressed="false" aria-label="关灯，切换到夜间纸色" title="关灯">
+          <span class="theme-toggle-icon" aria-hidden="true"></span>
+          <span class="theme-toggle-label"></span>
+        </button>
+        <a class="back-link" href="index.html"><span aria-hidden="true">←</span> Back to cover</a>
+      </div>
+    </div>
   </header>
 
   <main>
     <section class="hero shell">
       <p class="eyebrow">Selected Project / 01</p>
-      <h1>动漫眼部区域识别与可视化</h1>
+      <h1 class="page-title">动漫眼部区域识别与可视化</h1>
 
       <div class="meta" aria-label="项目信息">
         <div class="meta-item">
@@ -340,12 +57,12 @@
       </div>
     </section>
 
-    <figure class="cover">
+    <figure class="cover-figure">
       <img src="assets/project1.png" alt="动漫人物眼白、虹膜、瞳孔、高光和眼睑区域的识别可视化结果">
       <figcaption class="shell">不同眼部语义区域的定位结果与边界可视化。</figcaption>
     </figure>
 
-    <section class="overview shell">
+    <section class="overview shell" id="overview" data-reveal>
       <div class="section-number">01 / Overview</div>
       <div>
         <h2>项目概览</h2>
@@ -355,7 +72,7 @@
       </div>
     </section>
 
-    <section class="regions shell">
+    <section class="regions shell" id="regions" data-reveal>
       <div class="regions-header">
         <h2>识别区域</h2>
         <span class="section-number">02 / Regions</span>
@@ -371,9 +88,11 @@
     </section>
   </main>
 
-  <footer class="site-footer shell">
+  <footer class="site-footer">
     <span>Project 01 · 2026.7.10</span>
-    <a class="footer-home" href="index.html">返回 Tianze J. 首页 ↑</a>
+    <a class="footer-home" href="index.html">← Back to cover</a>
   </footer>
+
+  <script defer src="site.js"></script>
 </body>
 </html>

@@ -3,386 +3,128 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title></title>
-  <style>
-    * {
-      box-sizing: border-box;
-    }
-
-    body {
-      margin: 0;
-      min-height: 100vh;
-      padding: 10vh 6vw 6vw;
-      background:
-        radial-gradient(circle at 78% 18%, rgba(180, 205, 201, 0.38), transparent 30%),
-        linear-gradient(135deg, #f8f4ef 0%, #efe8df 52%, #f7f3ed 100%);
-    }
-
-    .layout {
-      width: min(1120px, 100%);
-      display: grid;
-      grid-template-columns: minmax(260px, 340px) minmax(320px, 1fr);
-      grid-template-areas:
-        "photo intro";
-      align-items: start;
-      gap: clamp(56px, 9vw, 120px);
-    }
-
-    .photo-stage {
-      grid-area: photo;
-      position: relative;
-      width: min(340px, 78vw);
-      padding: 14px;
-      border: 1px solid rgba(45, 37, 30, 0.12);
-      border-radius: 28px;
-      background: rgba(255, 252, 247, 0.78);
-      box-shadow: 0 28px 80px rgba(38, 31, 25, 0.16);
-    }
-
-    .photo-stage::before {
-      content: "";
-      position: absolute;
-      right: -18px;
-      bottom: -18px;
-      width: 58%;
-      height: 58%;
-      border-radius: 26px;
-      background: #d9c6b5;
-      z-index: -1;
-    }
-
-    .photo-stage::after {
-      content: "";
-      position: absolute;
-      left: -14px;
-      top: 18%;
-      width: 4px;
-      height: 42%;
-      border-radius: 999px;
-      background: #7d6654;
-    }
-
-    img {
-      display: block;
-      width: 100%;
-      height: auto;
-      border-radius: 20px;
-      box-shadow: 0 14px 36px rgba(34, 28, 23, 0.12);
-    }
-
-    .intro {
-      grid-area: intro;
-    }
-
-    .name {
-      margin: 0;
-      color: #2c241f;
-      font-family: Georgia, "Times New Roman", serif;
-      font-size: clamp(56px, 8vw, 112px);
-      font-style: italic;
-      font-weight: 400;
-      line-height: 0.95;
-      letter-spacing: 0;
-    }
-
-
-    .project-entry {
-      width: min(560px, 100%);
-      margin-top: 34px;
-      padding: 18px 0;
-      display: grid;
-      grid-template-columns: minmax(0, 1fr) auto auto;
-      align-items: center;
-      gap: 18px;
-      color: #2c241f;
-      border-top: 1px solid rgba(45, 37, 30, 0.16);
-      border-bottom: 1px solid rgba(45, 37, 30, 0.16);
-      text-decoration: none;
-      transition: color 180ms ease, padding-left 180ms ease;
-    }
-
-    .project-entry + .project-entry {
-      margin-top: 0;
-      border-top: 0;
-    }
-
-    .project-entry:hover,
-    .project-entry:focus-visible {
-      padding-left: 10px;
-      color: #9d3f32;
-      outline: none;
-    }
-
-    .project-entry-label {
-      color: #7b7067;
-      font-family: "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
-      font-size: 13px;
-      text-transform: uppercase;
-    }
-
-    .project-entry strong {
-      font-family: Georgia, "Times New Roman", serif;
-      font-size: 24px;
-      font-style: italic;
-      font-weight: 400;
-    }
-
-    .project-entry-arrow {
-      font-size: 22px;
-      line-height: 1;
-    }
-
-    .content {
-      width: min(1120px, 100%);
-      margin-top: 34px;
-    }
-
-    .section {
-      max-width: 760px;
-      padding-top: 24px;
-      border-top: 1px solid rgba(45, 37, 30, 0.12);
-    }
-
-    .section + .section {
-      margin-top: 42px;
-    }
-
-    .section h2 {
-      margin: 0 0 16px;
-      color: #2c241f;
-      font-family: Georgia, "Times New Roman", serif;
-      font-size: clamp(34px, 5vw, 58px);
-      font-style: italic;
-      font-weight: 400;
-      line-height: 1;
-      letter-spacing: 0;
-    }
-
-    .section p {
-      margin: 0 0 18px;
-      color: #5f554d;
-      font-family: "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
-      font-size: 18px;
-      line-height: 1.9;
-      letter-spacing: 0;
-    }
-
-    .section p:last-child {
-      margin-bottom: 0;
-    }
-
-    .practice-layout {
-      display: grid;
-      grid-template-columns: minmax(0, 1fr) minmax(240px, 360px);
-      gap: clamp(24px, 4vw, 44px);
-      align-items: start;
-    }
-
-    .practice-image {
-      margin: 4px 0 0;
-    }
-
-    .practice-image img {
-      aspect-ratio: 4 / 3;
-      object-fit: cover;
-      border-radius: 18px;
-      border: 1px solid rgba(45, 37, 30, 0.12);
-    }
-
-    .contact-links {
-      display: flex;
-      gap: 16px;
-      align-items: center;
-      flex-wrap: wrap;
-    }
-
-    .contact-link {
-      display: inline-flex;
-      width: 58px;
-      height: 58px;
-      align-items: center;
-      justify-content: center;
-      color: #2c241f;
-      border: 1px solid rgba(45, 37, 30, 0.14);
-      border-radius: 50%;
-      background: rgba(255, 252, 247, 0.78);
-      box-shadow: 0 12px 28px rgba(38, 31, 25, 0.1);
-      transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease;
-    }
-
-    .contact-link:hover,
-    .contact-link:focus-visible {
-      transform: translateY(-2px);
-      border-color: rgba(125, 102, 84, 0.42);
-      box-shadow: 0 16px 34px rgba(38, 31, 25, 0.16);
-      outline: none;
-    }
-
-    .contact-link svg {
-      width: 28px;
-      height: 28px;
-    }
-
-    .visit-total {
-      position: fixed;
-      right: 22px;
-      bottom: 22px;
-      padding: 12px 18px;
-      border: 1px solid rgba(45, 37, 30, 0.14);
-      border-radius: 999px;
-      background: rgba(255, 252, 247, 0.82);
-      color: #5f554d;
-      font-family: "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
-      font-size: 14px;
-      box-shadow: 0 14px 34px rgba(38, 31, 25, 0.14);
-      backdrop-filter: blur(10px);
-      z-index: 20;
-    }
-
-    .visit-total span {
-      color: #2c241f;
-      font-weight: 600;
-    }
-
-
-    @media (max-width: 640px) {
-      .layout {
-        grid-template-columns: 1fr;
-        grid-template-areas:
-          "photo"
-          "intro";
-        justify-items: center;
-        row-gap: 34px;
+  <meta name="description" content="Tianze J. — 时序与观察、研究与实践、项目与碎碎念。">
+  <title>Tianze J. · Vol. 01</title>
+  <script>
+    (() => {
+      try {
+        const saved = localStorage.getItem("tj-theme");
+        document.documentElement.setAttribute(
+          "data-theme",
+          saved === "night" || saved === "day" ? saved : "day"
+        );
+      } catch (_) {
+        document.documentElement.setAttribute("data-theme", "day");
       }
-
-      .intro {
-        width: 100%;
-      }
-
-      .project-entry {
-        margin-top: 28px;
-        grid-template-columns: minmax(0, 1fr) auto auto;
-      }
-
-      .name {
-        font-size: clamp(48px, 17vw, 72px);
-        text-align: center;
-      }
-
-      .content {
-        margin-top: 28px;
-      }
-
-      .section {
-        padding-top: 26px;
-      }
-
-      .section p {
-        font-size: 16px;
-      }
-
-      .practice-layout {
-        grid-template-columns: 1fr;
-      }
-
-      .visit-total {
-        right: 14px;
-        bottom: 14px;
-        padding: 10px 14px;
-        font-size: 13px;
-      }
-
-    }
-  </style>
+    })();
+  </script>
+  <link rel="stylesheet" href="styles.css">
 </head>
-<body>
-  <div class="layout">
-    <div class="photo-stage">
-      <img src="个人照片.jpg" alt="">
+<body class="page-home">
+  <div class="progress-rail" aria-hidden="true"><span></span></div>
+
+  <div class="top-bar">
+    <div class="masthead-meta">
+      <span>Vol. 01</span>
+      <span class="dot" aria-hidden="true"></span>
+      <span>2026</span>
+      <span class="dot" aria-hidden="true"></span>
+      <span>Special Issue</span>
     </div>
+    <button type="button" class="theme-toggle" aria-pressed="false" aria-label="关灯，切换到夜间纸色" title="关灯">
+      <span class="theme-toggle-icon" aria-hidden="true"></span>
+      <span class="theme-toggle-label"></span>
+    </button>
+  </div>
+
+  <header class="cover" aria-label="Cover">
+    <div class="photo-stage">
+      <div class="photo-frame">
+        <img src="个人照片.jpg" alt="Tianze J. 的肖像">
+      </div>
+    </div>
+
     <section class="intro" aria-label="Name">
       <h1 class="name">Tianze J.</h1>
-      <a class="project-entry" href="projects.html" aria-label="查看项目页面">
-        <span class="project-entry-label">Selected Project</span>
-        <strong>项目</strong>
-        <span class="project-entry-arrow" aria-hidden="true">↗</span>
-      </a>
-      <a class="project-entry" href="murmurs.html" aria-label="查看碎碎念页面">
-        <span class="project-entry-label">Personal Notes</span>
-        <strong>碎碎念</strong>
-        <span class="project-entry-arrow" aria-hidden="true">↗</span>
-      </a>
     </section>
-  </div>
+  </header>
+
+  <nav class="contents" aria-label="本页目录">
+    <span class="contents-label">Contents</span>
+    <a href="#research" data-label="01 Research"><span class="page-num">01</span>研究兴趣</a>
+    <a href="#practice" data-label="02 Practice"><span class="page-num">02</span>实践</a>
+    <a href="#contact" data-label="03 Contact"><span class="page-num">03</span>Contact</a>
+    <a href="projects.html" data-label="Project"><span class="page-num">04</span>项目</a>
+    <a href="murmurs.html" data-label="Murmurs"><span class="page-num">05</span>碎碎念</a>
+  </nav>
+
+  <aside class="page-indicator" aria-hidden="true">
+    <span class="current">Cover</span>
+  </aside>
 
   <main class="content">
     <section class="section" id="research">
+      <span class="section-rule" aria-hidden="true"></span>
+      <p class="section-kicker">01 / Research</p>
       <h2>研究兴趣</h2>
-      <p>
-        我关注时序大数据与区块链研究的交叉方向。时序数据记录着系统、市场和现实世界随时间变化的细节，而区块链提供了可信、透明、可追溯的数据组织方式。我希望探索如何在大规模时序数据中发现规律、建立预测模型，并结合区块链技术提升数据流转、验证与协作的可靠性。
-      </p>
-      <p>
-        我也对人脑、对话反应与计算机之间的联系感兴趣。人在交流中的理解、判断和回应往往不是孤立发生的，而是与记忆、语境、情绪和时间节奏共同作用。我希望进一步理解这些认知过程如何被计算机模型描述、模拟与辅助，从而探索更自然的人机交互方式。
-      </p>
+      <div class="section-body">
+        <p>
+          我关注时序大数据与区块链研究的交叉方向。时序数据记录着系统、市场和现实世界随时间变化的细节，而区块链提供了可信、透明、可追溯的数据组织方式。我希望探索如何在大规模时序数据中发现规律、建立预测模型，并结合区块链技术提升数据流转、验证与协作的可靠性。
+        </p>
+        <p>
+          我也对人脑、对话反应与计算机之间的联系感兴趣。人在交流中的理解、判断和回应往往不是孤立发生的，而是与记忆、语境、情绪和时间节奏共同作用。我希望进一步理解这些认知过程如何被计算机模型描述、模拟与辅助，从而探索更自然的人机交互方式。
+        </p>
+      </div>
     </section>
 
     <section class="section" id="practice">
+      <span class="section-rule" aria-hidden="true"></span>
+      <p class="section-kicker">02 / Practice</p>
       <h2>实践</h2>
-      <div class="practice-layout">
-        <p>
-          我希望在实践中把抽象的认知问题转化为可以观察、记录和分析的数据。人脑传递出的信号像一面明镜，映照出人在对话中的注意、反应、判断与情绪变化；而计算机则提供了另一种观看方式，将这些连续而细微的变化整理成结构、模型和可被反复验证的线索。对我来说，实践不是简单地使用工具，而是在人的思考与机器的计算之间寻找一种更清晰、更自然的连接。
-        </p>
-        <figure class="practice-image">
-          <img src="practice-mirror.png" alt="19世纪男子在实验室中照着镜子观察脑信号与仪器">
-        </figure>
+      <div class="section-body">
+        <div class="practice-layout">
+          <p>
+            我希望在实践中把抽象的认知问题转化为可以观察、记录和分析的数据。人脑传递出的信号像一面明镜，映照出人在对话中的注意、反应、判断与情绪变化；而计算机则提供了另一种观看方式，将这些连续而细微的变化整理成结构、模型和可被反复验证的线索。对我来说，实践不是简单地使用工具，而是在人的思考与机器的计算之间寻找一种更清晰、更自然的连接。
+          </p>
+          <figure class="practice-image">
+            <img src="practice-mirror.png" alt="19世纪男子在实验室中照着镜子观察脑信号与仪器">
+          </figure>
+        </div>
       </div>
     </section>
 
     <section class="section" id="contact">
+      <span class="section-rule" aria-hidden="true"></span>
+      <p class="section-kicker">03 / Contact</p>
       <h2>Contact Me</h2>
-      <div class="contact-links" aria-label="Contact links">
-        <a class="contact-link" href="mailto:jintianze220@gmail.com" title="Gmail" aria-label="Email jintianze220@gmail.com">
-          <svg viewBox="0 0 32 32" role="img" aria-hidden="true">
-            <rect x="4" y="8" width="24" height="16" rx="3" fill="#fff7f1" stroke="#b84a3a" stroke-width="2"/>
-            <path d="M6 10.5 16 18l10-7.5" fill="none" stroke="#b84a3a" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
-            <path d="M6.5 23 13 16.8" fill="none" stroke="#d79b42" stroke-width="2" stroke-linecap="round"/>
-            <path d="M25.5 23 19 16.8" fill="none" stroke="#5f8f73" stroke-width="2" stroke-linecap="round"/>
-          </svg>
-        </a>
-        <a class="contact-link" href="https://github.com/stinnner" target="_blank" rel="noopener noreferrer" title="GitHub" aria-label="GitHub profile">
-          <svg viewBox="0 0 32 32" role="img" aria-hidden="true">
-            <path fill="currentColor" d="M16 3.2c-7.1 0-12.8 5.7-12.8 12.8 0 5.7 3.7 10.5 8.8 12.2.6.1.8-.3.8-.6v-2.3c-3.6.8-4.4-1.5-4.4-1.5-.6-1.5-1.4-1.9-1.4-1.9-1.2-.8.1-.8.1-.8 1.3.1 2 1.3 2 1.3 1.1 2 3 1.4 3.7 1.1.1-.8.4-1.4.8-1.7-2.9-.3-5.9-1.4-5.9-6.3 0-1.4.5-2.5 1.3-3.4-.1-.3-.6-1.7.1-3.4 0 0 1.1-.3 3.5 1.3 1-.3 2.1-.4 3.2-.4s2.2.1 3.2.4c2.4-1.6 3.5-1.3 3.5-1.3.7 1.7.2 3.1.1 3.4.8.9 1.3 2 1.3 3.4 0 4.9-3 6-5.9 6.3.5.4.9 1.2.9 2.4v3.5c0 .3.2.7.9.6 5.1-1.7 8.8-6.5 8.8-12.2 0-7.2-5.7-12.9-12.8-12.9z"/>
-          </svg>
-        </a>
+      <div class="section-body">
+        <div class="contact-links" aria-label="Contact links">
+          <a class="contact-link" href="mailto:jintianze220@gmail.com" aria-label="Email jintianze220@gmail.com">
+            <span class="tip">Gmail</span>
+            <svg viewBox="0 0 32 32" role="img" aria-hidden="true">
+              <rect x="4" y="8" width="24" height="16" rx="3" fill="#fff7f1" stroke="#b84a3a" stroke-width="2"/>
+              <path d="M6 10.5 16 18l10-7.5" fill="none" stroke="#b84a3a" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M6.5 23 13 16.8" fill="none" stroke="#d79b42" stroke-width="2" stroke-linecap="round"/>
+              <path d="M25.5 23 19 16.8" fill="none" stroke="#5f8f73" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </a>
+          <a class="contact-link" href="https://github.com/stinnner" target="_blank" rel="noopener noreferrer" aria-label="GitHub profile">
+            <span class="tip">GitHub ↗</span>
+            <svg viewBox="0 0 32 32" role="img" aria-hidden="true">
+              <path fill="currentColor" d="M16 3.2c-7.1 0-12.8 5.7-12.8 12.8 0 5.7 3.7 10.5 8.8 12.2.6.1.8-.3.8-.6v-2.3c-3.6.8-4.4-1.5-4.4-1.5-.6-1.5-1.4-1.9-1.4-1.9-1.2-.8.1-.8.1-.8 1.3.1 2 1.3 2 1.3 1.1 2 3 1.4 3.7 1.1.1-.8.4-1.4.8-1.7-2.9-.3-5.9-1.4-5.9-6.3 0-1.4.5-2.5 1.3-3.4-.1-.3-.6-1.7.1-3.4 0 0 1.1-.3 3.5 1.3 1-.3 2.1-.4 3.2-.4s2.2.1 3.2.4c2.4-1.6 3.5-1.3 3.5-1.3.7 1.7.2 3.1.1 3.4.8.9 1.3 2 1.3 3.4 0 4.9-3 6-5.9 6.3.5.4.9 1.2.9 2.4v3.5c0 .3.2.7.9.6 5.1-1.7 8.8-6.5 8.8-12.2 0-7.2-5.7-12.9-12.8-12.9z"/>
+            </svg>
+          </a>
+        </div>
       </div>
     </section>
   </main>
 
-
-  <div class="visit-total">
-    访问总量：<span id="busuanzi_value_site_pv">--</span>
-  </div>
+  <footer class="site-footer">
+    <div class="visit-line">Printed for the web · <span id="busuanzi_value_site_pv">--</span></div>
+    <span>Tianze J. · Vol. 01</span>
+  </footer>
 
   <script defer src="https://events.vercount.one/js"></script>
-
-  <script>
-    (() => {
-      const element = document.getElementById("busuanzi_value_site_pv");
-      const base = 135;
-      const anchor = 9;
-      let attempts = 0;
-      const timer = window.setInterval(() => {
-        attempts += 1;
-        const raw = Number(element.textContent);
-        if (Number.isFinite(raw) && element.textContent !== "--") {
-          element.textContent = String(Math.max(base, base + raw - anchor));
-          window.clearInterval(timer);
-        } else if (attempts >= 150) {
-          window.clearInterval(timer);
-        }
-      }, 100);
-    })();
-  </script>
-
+  <script defer src="site.js"></script>
 </body>
 </html>
